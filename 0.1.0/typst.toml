@@ -1,0 +1,8 @@
+[package]
+name = "ldemetrios-commons"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+authors = ["LDemetrios"]
+license = "GPL-3.0-only"
+description = "Common utils"
+repository = "https://github.com/LDemetrios/LD-Typst-Commons"
