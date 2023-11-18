@@ -12,7 +12,7 @@
 #let Rnd_initial-scramble(seed) = band(bxor(seed, multiplier), mask)
 
 #let new-Random(seed: none) = {
-  (seed: Rnd_initial-scramble(seed))
+  (seed: Rnd_initial-scramble(if(seed == none) {seedUniquifier} else {seed}))
 }
 
 #let Rnd_set-seed(this, seed) = {

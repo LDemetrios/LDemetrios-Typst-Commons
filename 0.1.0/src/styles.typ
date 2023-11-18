@@ -1,4 +1,5 @@
 #import "@preview/tablex:0.0.5": *
+#import "@preview/tablex:0.0.6": tablex, rowspanx, colspanx, hlinex, vlinex
 
 #let conf(title: none, authors: (), abstract: [], doc) = {
   set page(
@@ -62,3 +63,16 @@
 
 #import "@preview/rose-pine:0.1.0": apply, rose-pine-dawn, rose-pine-moon, rose-pine, apply-theme
 #let dark-theme = apply(variant: "rose-pine-moon")
+
+#let slfrac(a, b) = box(baseline:50% - 0.3em)[
+#cetz.canvas({
+  import cetz.draw : *
+  content((0, 0), a, anchor:"bottom-right")
+  line((.5em, .5em), (-.2em, -1em), stroke:1pt)
+  content((.35em, -.4em), b, anchor:"top-left")
+})]
+
+#let cyrsmallcaps(body) = [
+  #show regex("[а-яё]") : it => text(size:.7em, upper(it))
+  #body
+]

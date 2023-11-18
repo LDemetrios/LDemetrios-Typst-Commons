@@ -1,5 +1,8 @@
-#import "random.typ" : * // next-int, next-long, next-float, next-double, next-boolean
+#import "random.typ" : next-int, next-long, next-float, next-double, next-boolean
 #import "styles.typ" : *
+#import "graphics.typ" : bezier-curve, arc0
+#import "numbers.typ"
+#import "vectors.typ"
 
 #let help = [
     // TODO
