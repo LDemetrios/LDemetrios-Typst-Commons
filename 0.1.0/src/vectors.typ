@@ -17,6 +17,6 @@
 }
 #let scl-v(a, b) = a.x * b.x + a.y * b.y
 #let mod-v(a) = calc.sqrt(scl-v(a, a))
-#let ort-v(a) = div-v(a, mod-v(a))
-#let rot-v(a) = (x: (-a.y), y: (-a.x))
+#let ort-v(a) = if mod-v(a) == 0 {(x:0, y:0)} else { div-v(a, mod-v(a)) }
+#let rot-v(a) = (x: (-a.y), y: (a.x))
 
