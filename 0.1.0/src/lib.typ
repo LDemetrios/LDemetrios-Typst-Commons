@@ -4,6 +4,7 @@
 #import "graphics.typ"
 #import "numbers.typ"
 #import "vectors.typ"
+#import "vectors.typ": *
 
 #let help = [
     // TODO
