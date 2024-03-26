@@ -1,5 +1,4 @@
-#import "@preview/tablex:0.0.5": *
-#import "@preview/tablex:0.0.6": tablex, rowspanx, colspanx, hlinex, vlinex
+#import "@preview/tablex:0.0.6": *
 
 #let conf(title: none, authors: (), abstract: [], doc) = {
   set page(
