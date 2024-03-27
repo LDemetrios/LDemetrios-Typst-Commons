@@ -81,21 +81,10 @@
 }
 #let Long_shl(a, s) = Long_mul(a, calc.pow(2, s))
 
-#let Long = (
-  add: Long_add,
-  sub: Long_sub,
-  mul: Long_mul,
-  negate: Long_negate,
-  div: Long_div,
-  shl: Long_shl,
-  shr: Long_shr,
-  ushr: Long_shr,
-  to-int: Long_to-int,
-)
-
 #let __int-op(a, b, op) = {
   Long_to-int(op(Long_to-int(a), Long_to-int(b)))
 }
+
 #let Int_add(a, b) = __int-op(a, b, (x, y) => x + y)
 #let Int_sub(a, b) = __int-op(a, b, (x, y) => x - y)
 #let Int_mul(a, b) = __int-op(a, b, (x, y) => x * y)

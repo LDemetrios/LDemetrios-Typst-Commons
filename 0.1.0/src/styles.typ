@@ -49,25 +49,6 @@
   ]
 ]
 
-#let quote(pref: none, author: none, text) = {
-  [#pref]
-  tablex(
-    columns: (.7em, .4em, 1fr),
-    align: left + horizon,
-    auto-vlines: false,
-    auto-hlines: false,
-    [],
-    vlinex(start: 0, end: 1, stroke: rgb("#aaaaaa") + 3pt),
-    [],
-    [
-      #text
-      #if author != none {
-        align(right)[--- _ #author _]
-      }
-    ],
-  )
-}
-
 #let slfrac(a, b) = box(baseline: 50% - 0.3em)[
   #cetz.canvas({
     import cetz.draw : *
@@ -79,45 +60,6 @@
 
 #let cyrsmallcaps(body) = [
   #show regex("[а-яё]") : it => text(size: .7em, upper(it))
-  #body
-]
-
-#let showtheme(
-  base: none,
-  fill: none,
-  surface: none,
-  high: none,
-  subtle: none,
-  overlay: none,
-  iris: none,
-  foam: none,
-  fnote: none,
-) = body => [
-
-  #let decide(on, whatif) = if (on == none) { body => body } else { whatif }
-  #let either(..a) = if (a.pos().contains(none)) { none } else { 1 }
-
-  #show: decide(base, (body) => { set page(fill: base); body })
-  #show: decide(fill, (body) => { set text(fill: fill); body })
-  #show:decide(subtle, (body) => { set line(stroke: subtle);body })
-  #show : decide(either(subtle, overlay), (body) => {
-    set circle(stroke: subtle, fill: overlay)
-    set ellipse(stroke: subtle, fill: overlay)
-    set path(stroke: subtle, fill: overlay)
-    set polygon(stroke: subtle, fill: overlay)
-    set rect(stroke: subtle, fill: overlay)
-    set square(stroke: subtle, fill: overlay)
-  })
-  #show : decide(high, (body) => { set highlight(fill: highlight.high); body })
-  #show : decide(
-    either(surface, high),
-    (body) => { set table(fill: surface, stroke: highlight.high); body },
-  )
-
-  #show link: decide(iris, (body) => { set text(fill: iris); body })
-  #show ref: decide(foam, (body) => { set text(fill: foam); body })
-  #show footnote: decide(fnote, (body) => { set text(fill: fnote); body })
-
   #body
 ]
 
@@ -146,3 +88,52 @@
   ]
   cyrsmallcaps(body)
 }
+
+#let lucid(x) = color.mix((text.fill, 255 - x), (page.fill, x))
+
+// author: gaiajack
+#let labeled-box(lbl, body) = block(above: 2em, stroke: 0.5pt + foreground, width: 100%, inset: 14pt)[
+  #set text(font: "Noto Sans")
+  #place(
+    top + left,
+    dy: -.8em - 14pt, // Account for inset of block
+    dx: 6pt - 14pt,
+    block(fill: background, inset: 2pt)[*#lbl*],
+  )
+  #body
+]
+
+#let marked(fill: auto, stroke, body) = context {
+  let fill2 = if fill == auto { lucid(230) } else {fill}
+  let stroke = if type(stroke) == length {
+    foreground + stroke
+  } else if type(stroke) == color {
+    stroke + 0.25em
+  } else {
+    stroke
+  }
+  rect(fill: fill2, stroke: (left: stroke), width: 100%, body)
+}
+
+#let quote(pref: none, author: none, body) = {
+  [#pref]
+  context marked(fill: lucid(180), text.fill + 3pt)[
+    #body
+    #if author != none {
+      align(right)[--- _ #author _]
+    }
+  ]
+}
+
+#let nobreak(body) = block(breakable: false, body)
+
+#let centbox(body) = align(center)[
+  #box[
+    #align(left)[
+      #body
+    ]
+  ]
+]
+
+#let offset(off, ..args, body) = pad(left: 2em, ..args, body)
+

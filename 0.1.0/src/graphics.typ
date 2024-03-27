@@ -2,6 +2,11 @@
 
 #import "vectors.typ" : *
 
+#let canvas(..args, alignment:center, body) = context align(alignment, cetz.canvas(..args, {
+  cetz.draw.set-style(stroke:text.fill)
+  body
+}))
+
 #let bezier-curve(steps: 100, coords, ..args) = {
   let pow(a, b) = if (b == 0) { 1 } else { calc.pow(a, b) }
 
@@ -31,7 +36,7 @@
   }
 }
 
-#let arc0(from, to, delta, ..args) = {
+#let arc-line(from, to, delta, ..args) = {
   import cetz.draw: *
 
   get-ctx(ctx => {
