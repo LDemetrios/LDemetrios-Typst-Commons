@@ -6,3 +6,10 @@
 #let dv = $upright(d)v$
 #let dp = $upright(d)p$
 #let dt = $upright(d)t$
+
+#let dcases(delim: "{", reverse: false, gap: 0.5em, ..children) = math.cases(
+  delim: delim,
+  reverse: reverse,
+  gap: gap,
+  ..children.pos().map(math.display),
+)
