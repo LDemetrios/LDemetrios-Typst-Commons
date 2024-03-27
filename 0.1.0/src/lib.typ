@@ -4,6 +4,7 @@
 #import "Long.typ"
 #import "Int.typ"
 #import "vectors.typ": *
+#import "math.typ": *
 
 #let help = [
     // TODO
