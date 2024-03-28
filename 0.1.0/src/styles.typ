@@ -84,9 +84,9 @@
   show heading : (it) => [
     #set text(size: descr.at(it.level - 1).at(0))
     #set align(descr.at(it.level - 1).at(1))
-    #it
+    #cyrsmallcaps(it)
   ]
-  cyrsmallcaps(body)
+  body
 }
 
 #let lucid(x) = color.mix((text.fill, 255 - x), (page.fill, x))

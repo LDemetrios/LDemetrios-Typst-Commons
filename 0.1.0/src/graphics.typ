@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.1.2"
+#import "@preview/cetz:0.2.2"
 
 #import "vectors.typ" : *
 
