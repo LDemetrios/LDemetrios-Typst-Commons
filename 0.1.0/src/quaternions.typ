@@ -77,8 +77,8 @@
 
 #let qrotational(axis, alpha) = {
   let u = qnormalize(quaternion(0, ..axis))
-  let s = calc.sin(alpha)
-  let c = calc.cos(alpha)
+  let s = calc.sin(alpha/2)
+  let c = calc.cos(alpha/2)
   quat(c, u.x * s, u.y * s, u.z * s)
 }
 
