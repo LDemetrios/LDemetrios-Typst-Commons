@@ -92,13 +92,13 @@
 #let lucid(x) = color.mix((text.fill, 255 - x), (page.fill, x))
 
 // author: gaiajack
-#let labeled-box(lbl, body) = block(above: 2em, stroke: 0.5pt + foreground, width: 100%, inset: 14pt)[
+#let labeled-box(lbl, body) = block(above: 2em, stroke: 0.5pt + text.fill, width: 100%, inset: 14pt)[
   #set text(font: "Noto Sans")
   #place(
     top + left,
-    dy: -.8em - 14pt, // Account for inset of block
-    dx: 6pt - 14pt,
-    block(fill: background, inset: 2pt)[*#lbl*],
+    dy: -.8em - 12pt, // Account for inset of block
+    dx: 6pt,
+    block(fill: page.fill, inset: 2pt)[*#lbl*],
   )
   #body
 ]
