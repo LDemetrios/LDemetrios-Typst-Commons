@@ -65,7 +65,7 @@
   })
 }
 
-#let arrow(from, to, arrowhead-size, arrowhead-angle, name: none, fill-arrowhead:none, ..args) = {
+#let draw-arrow(from, to, arrowhead-size, arrowhead-angle, name: none, fill-arrowhead:none, ..args) = {
   import cetz.draw: *
   get-ctx(ctx => {
     let (fromx, fromy, fromz) = cetz.coordinate.resolve(ctx, from)
